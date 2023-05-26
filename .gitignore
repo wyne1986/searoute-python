@@ -1,0 +1,12 @@
+.git
+.idea
+.idea/*
+*.iws
+*.iml
+*.ipr
+*.xml
+.vscode/
+.classpath
+.factorypath
+.project
+__pycache__/
