@@ -25,10 +25,10 @@ class SeaRoute(object):
 
     #将geojson单个航线段解析为节点和dijkstra集
     def __add_nodes(self,p1,p2):
-        if ('%s_%s' % (p1[1], p1[0])) not in self.__nodes or ('%s_%s' % (p2[1], p2[0])) not in self.__nodes:
-            self.graph.add_edge('%s_%s' % (p1[1], p1[0]),'%s_%s' % (p2[1], p2[0]),self.__tran_to_int(geodesic(Point(latitude=p1[1], longitude=p1[0]),Point(latitude=p2[1],longitude=p2[0])).km))
-            self.graph.add_edge('%s_%s' % (p2[1], p2[0]),'%s_%s' % (p1[1], p1[0]),self.__tran_to_int(geodesic(Point(latitude=p1[1], longitude=p1[0]),Point(latitude=p2[1],longitude=p2[0])).km))
+        self.graph.add_edge('%s_%s' % (p1[1], p1[0]),'%s_%s' % (p2[1], p2[0]),self.__tran_to_int(geodesic(Point(latitude=p1[1], longitude=p1[0]),Point(latitude=p2[1],longitude=p2[0])).km))
+        self.graph.add_edge('%s_%s' % (p2[1], p2[0]),'%s_%s' % (p1[1], p1[0]),self.__tran_to_int(geodesic(Point(latitude=p1[1], longitude=p1[0]),Point(latitude=p2[1],longitude=p2[0])).km))
         self.__nodes['%s_%s' % (p1[1], p1[0])] = [p1[1], p1[0]]
+        self.__nodes['%s_%s' % (p2[1], p2[0])] = [p2[1], p2[0]]
 
 
     #在节点集里查找距离传入值最近的节点
